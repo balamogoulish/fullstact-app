@@ -1,12 +1,21 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const cors = require('cors')
+const cors = require('cors');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 const port = 4000;
 
 //다른 포트에서도 사용할 수 있도록 cors 선언
 app.use(cors());
 app.use(express.json())
+dotenv.config();
+
+mongoose.connect(process.env.MONGO_URI)
+.then(()=>{
+    console.log('MongoDB Connected...')
+})
+.catch(err=>console.log(err))
 
 app.get('/', (req, res)=>{
     res.send('안녕하세요!');

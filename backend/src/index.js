@@ -11,6 +11,7 @@ app.use(cors());
 app.use(express.json())
 dotenv.config();
 
+//MongoDB와 연결함
 mongoose.connect(process.env.MONGO_URI)
 .then(()=>{
     console.log('MongoDB Connected...')
@@ -19,11 +20,6 @@ mongoose.connect(process.env.MONGO_URI)
 
 app.get('/', (req, res)=>{
     res.send('안녕하세요!');
-});
-
-app.post('/', (req, res)=>{
-    console.log(req.body);
-    res.json(req.body);
 });
 
 //uploads 폴더 내의 파일에 접근할 수 있게 함
